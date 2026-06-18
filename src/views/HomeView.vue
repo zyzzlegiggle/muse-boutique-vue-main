@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useListingStore } from '../stores/listingStore'
@@ -31,7 +31,7 @@ const featuredProducts = computed(() => {
           <p class="text-[15px] text-brand-muted leading-relaxed mb-8">
             Thoughtfully crafted apparel, objects, and organic scents that bring calm and intentional utility to daily rituals.
           </p>
-          <RouterLink to="/shop" class="btn btn-primary inline-flex gap-3 group">
+          <RouterLink to="/shop" class="inline-flex items-center justify-center border text-sm tracking-widest uppercase cursor-pointer transition-all duration-400 ease-[cubic-bezier(0.25,1,0.5,1)] bg-brand-dark border-brand-dark text-brand-bg hover:bg-brand-gold hover:border-brand-gold py-3 px-7 inline-flex gap-3 group">
             <span>Explore Collection</span>
             <ArrowRight :size="16" class="transition-transform duration-200 group-hover:translate-x-1" stroke-width="1.5" />
           </RouterLink>
@@ -55,7 +55,7 @@ const featuredProducts = computed(() => {
       <div class="max-w-7xl w-full mx-auto px-6 md:px-8">
         <span class="text-[12px] uppercase tracking-[0.15em] font-semibold text-brand-gold block mb-6">Curated Spaces</span>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <RouterLink to="/shop?category=Apparel" class="group relative h-[380px] flex items-end p-8 border border-brand-border overflow-hidden transition-smooth bg-zinc-200">
+          <RouterLink to="/shop?category=Apparel" class="group relative h-[380px] flex items-end p-8 border border-brand-border overflow-hidden transition-all duration-400 ease-[cubic-bezier(0.25,1,0.5,1)] bg-zinc-200">
             <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" :style="{ backgroundImage: `url(${apparelCategoryImg})` }"></div>
             <div class="absolute inset-0 bg-black/25 z-10 transition-colors duration-300 group-hover:bg-black/35"></div>
             <div class="relative z-20 text-brand-bg">
@@ -64,7 +64,7 @@ const featuredProducts = computed(() => {
             </div>
           </RouterLink>
 
-          <RouterLink to="/shop?category=Objects" class="group relative h-[380px] flex items-end p-8 border border-brand-border overflow-hidden transition-smooth bg-zinc-200">
+          <RouterLink to="/shop?category=Objects" class="group relative h-[380px] flex items-end p-8 border border-brand-border overflow-hidden transition-all duration-400 ease-[cubic-bezier(0.25,1,0.5,1)] bg-zinc-200">
             <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" :style="{ backgroundImage: `url(${objectsCategoryImg})` }"></div>
             <div class="absolute inset-0 bg-black/25 z-10 transition-colors duration-300 group-hover:bg-black/35"></div>
             <div class="relative z-20 text-brand-bg">
@@ -73,7 +73,7 @@ const featuredProducts = computed(() => {
             </div>
           </RouterLink>
 
-          <RouterLink to="/shop?category=Scents" class="group relative h-[380px] flex items-end p-8 border border-brand-border overflow-hidden transition-smooth bg-zinc-200">
+          <RouterLink to="/shop?category=Scents" class="group relative h-[380px] flex items-end p-8 border border-brand-border overflow-hidden transition-all duration-400 ease-[cubic-bezier(0.25,1,0.5,1)] bg-zinc-200">
             <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" :style="{ backgroundImage: `url(${scentsCategoryImg})` }"></div>
             <div class="absolute inset-0 bg-black/25 z-10 transition-colors duration-300 group-hover:bg-black/35"></div>
             <div class="relative z-20 text-brand-bg">
@@ -92,7 +92,7 @@ const featuredProducts = computed(() => {
             <span class="text-[12px] uppercase tracking-[0.15em] font-semibold text-brand-gold block">The Selection</span>
             <h2 class="text-3xl md:text-4xl text-brand-dark mt-1 font-serif">Selected Pieces</h2>
           </div>
-          <RouterLink to="/shop" class="btn-link">View All Products</RouterLink>
+          <RouterLink to="/shop" class="p-0 border-none bg-none uppercase text-xs tracking-wider font-semibold cursor-pointer relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[1px] after:bg-brand-dark after:scale-x-100 after:origin-left after:transition-all after:duration-400 after:ease-[cubic-bezier(0.25,1,0.5,1)] hover:after:scale-x-0 hover:after:origin-right">View All Products</RouterLink>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">

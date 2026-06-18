@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { onMounted, watch, computed } from 'vue'
 import { useRoute, RouterLink } from 'vue-router'
 import { useDetailsStore } from '../stores/detailsStore'
@@ -11,7 +11,7 @@ const product = computed(() => detailsStore.activeProduct)
 const selectedVariant = computed(() => detailsStore.selectedVariant)
 
 const loadActiveProduct = () => {
-  detailsStore.loadProduct(route.params.id)
+  detailsStore.loadProduct(route.params.id as string)
 }
 
 
@@ -19,7 +19,7 @@ watch(() => route.params.id, () => {
   loadActiveProduct()
 })
 
-const selectVariant = (variant) => {
+const selectVariant = (variant: string) => {
   detailsStore.setSelectedVariant(variant)
 }
 
@@ -64,7 +64,7 @@ const addToCart = () => {
             <button 
               v-for="v in product.variants" 
               :key="v"
-              class="bg-none border border-brand-border px-5 py-2.5 text-[13px] cursor-pointer transition-fast min-w-[60px] hover:border-brand-dark"
+              class="bg-none border border-brand-border px-5 py-2.5 text-[13px] cursor-pointer transition-all duration-200 ease-in-out min-w-[60px] hover:border-brand-dark"
               :class="{ 'border-brand-dark bg-brand-dark text-brand-bg': selectedVariant === v }"
               @click="selectVariant(v)"
             >
@@ -73,14 +73,14 @@ const addToCart = () => {
           </div>
         </div>
 
-        <button class="w-full mb-10 flex gap-2.5 btn btn-primary" @click="addToCart">
+        <button class="w-full mb-10 flex gap-2.5 inline-flex items-center justify-center border text-sm tracking-widest uppercase cursor-pointer transition-all duration-400 ease-[cubic-bezier(0.25,1,0.5,1)] bg-brand-dark border-brand-dark text-brand-bg hover:bg-brand-gold hover:border-brand-gold py-3 px-7" @click="addToCart">
           <ShoppingBag :size="16" stroke-width="1.5" />
           <span>Add to Bag</span>
         </button>
 
         <div class="border-t border-brand-border">
           <details class="border-b border-brand-border group" open>
-            <summary class="py-5 text-sm uppercase tracking-wider font-semibold cursor-pointer text-brand-dark hover:text-brand-gold select-none outline-none transition-fast list-none flex justify-between items-center">
+            <summary class="py-5 text-sm uppercase tracking-wider font-semibold cursor-pointer text-brand-dark hover:text-brand-gold select-none outline-none transition-all duration-200 ease-in-out list-none flex justify-between items-center [&::-webkit-details-marker]:hidden">
               <span>Details</span>
               <span class="text-xs transition-transform duration-300 group-open:rotate-180">↓</span>
             </summary>
@@ -90,7 +90,7 @@ const addToCart = () => {
           </details>
 
           <details class="border-b border-brand-border group">
-            <summary class="py-5 text-sm uppercase tracking-wider font-semibold cursor-pointer text-brand-dark hover:text-brand-gold select-none outline-none transition-fast list-none flex justify-between items-center">
+            <summary class="py-5 text-sm uppercase tracking-wider font-semibold cursor-pointer text-brand-dark hover:text-brand-gold select-none outline-none transition-all duration-200 ease-in-out list-none flex justify-between items-center [&::-webkit-details-marker]:hidden">
               <span>Specifications</span>
               <span class="text-xs transition-transform duration-300 group-open:rotate-180">↓</span>
             </summary>
@@ -104,7 +104,7 @@ const addToCart = () => {
           </details>
 
           <details class="border-b border-brand-border group">
-            <summary class="py-5 text-sm uppercase tracking-wider font-semibold cursor-pointer text-brand-dark hover:text-brand-gold select-none outline-none transition-fast list-none flex justify-between items-center">
+            <summary class="py-5 text-sm uppercase tracking-wider font-semibold cursor-pointer text-brand-dark hover:text-brand-gold select-none outline-none transition-all duration-200 ease-in-out list-none flex justify-between items-center [&::-webkit-details-marker]:hidden">
               <span>Shipping & Returns</span>
               <span class="text-xs transition-transform duration-300 group-open:rotate-180">↓</span>
             </summary>
@@ -121,15 +121,9 @@ const addToCart = () => {
     <div v-else class="text-center py-24 px-6 max-w-[500px] mx-auto flex flex-col items-center gap-5">
       <h2 class="text-3xl font-serif">Product Not Found</h2>
       <p class="text-brand-muted">We couldn't load the product you are looking for.</p>
-      <RouterLink to="/shop" class="btn btn-primary">
+      <RouterLink to="/shop" class="inline-flex items-center justify-center border text-sm tracking-widest uppercase cursor-pointer transition-all duration-400 ease-[cubic-bezier(0.25,1,0.5,1)] bg-brand-dark border-brand-dark text-brand-bg hover:bg-brand-gold hover:border-brand-gold py-3 px-7">
         Return to Collection
       </RouterLink>
     </div>
   </div>
 </template>
-
-<style scoped>
-summary::-webkit-details-marker {
-  display: none;
-}
-</style>

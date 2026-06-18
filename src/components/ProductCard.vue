@@ -1,16 +1,14 @@
-<script setup>
+<script setup lang="ts">
 import { RouterLink } from 'vue-router'
+import type { Product } from '@/types'
 
-defineProps({
-  product: {
-    type: Object,
-    required: true
-  }
-})
+defineProps<{
+  product: Product
+}>()
 </script>
 
 <template>
-  <RouterLink :to="`/shop/${product.id}`" class="group flex flex-col bg-brand-surface border border-brand-border relative overflow-hidden transition-smooth hover:-translate-y-1 hover:shadow-lg hover:shadow-black/[0.02] hover:border-brand-muted">
+  <RouterLink :to="`/shop/${product.id}`" class="group flex flex-col bg-brand-surface border border-brand-border relative overflow-hidden transition-all duration-400 ease-[cubic-bezier(0.25,1,0.5,1)] hover:-translate-y-1 hover:shadow-lg hover:shadow-black/[0.02] hover:border-brand-muted">
     <div class="aspect-[4/5] w-full bg-brand-light flex items-center justify-center relative overflow-hidden border-b border-brand-border p-0">
       <img :src="product.image" :alt="product.title" class="w-full h-full object-cover transition-transform duration-600 group-hover:scale-105" />
       <div class="absolute inset-0 bg-brand-bg/40 backdrop-blur-[2px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-400">

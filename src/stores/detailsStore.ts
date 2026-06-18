@@ -1,13 +1,16 @@
 import { defineStore } from 'pinia'
 import { useListingStore } from './listingStore'
+import { CartItem, Product } from '@/types'
+
+
 
 export const useDetailsStore = defineStore('details', {
   state: () => ({
-    activeProduct: null,
-    selectedVariant: '',
-    cart: [],
-    cartOpen: false,
-    checkoutSuccess: false
+    activeProduct: null as Product | null,
+    selectedVariant: '' as string,
+    cart: [] as CartItem[],
+    cartOpen: false as boolean,
+    checkoutSuccess: false as boolean
   }),
   getters: {
     cartSubtotal(state) {
@@ -18,9 +21,9 @@ export const useDetailsStore = defineStore('details', {
     }
   },
   actions: {
-    loadProduct(id) {
+    loadProduct(id: number | string) {
       const listingStore = useListingStore()
-      const product = listingStore.products.find(p => p.id === parseInt(id))
+      const product = listingStore.products.find(p => p.id === parseInt(id.toString()))
       if (product) {
         this.activeProduct = product
         this.selectedVariant = product.variants[0] || ''
@@ -30,17 +33,17 @@ export const useDetailsStore = defineStore('details', {
         this.selectedVariant = ''
       }
     },
-    setSelectedVariant(variant) {
+    setSelectedVariant(variant: string) {
       this.selectedVariant = variant
     },
-    toggleCart(forceState) {
+    toggleCart(forceState?: boolean) {
       if (typeof forceState === 'boolean') {
         this.cartOpen = forceState
       } else {
         this.cartOpen = !this.cartOpen
       }
     },
-    addToCart(product, variant) {
+    addToCart(product: Product, variant?: string) {
       const variantToUse = variant || this.selectedVariant || (product.variants && product.variants[0]) || ''
       const existingItem = this.cart.find(
         item => item.product.id === product.id && item.variant === variantToUse
@@ -59,16 +62,16 @@ export const useDetailsStore = defineStore('details', {
       this.checkoutSuccess = false
       this.cartOpen = true
     },
-    removeFromCart(cartItemId) {
+    removeFromCart(cartItemId: string) {
       const index = this.cart.findIndex(item => item.id === cartItemId)
       if (index !== -1) {
         this.cart.splice(index, 1)
       }
     },
-    updateQuantity(cartItemId, quantity) {
+    updateQuantity(cartItemId: string, quantity: number | string) {
       const item = this.cart.find(item => item.id === cartItemId)
       if (item) {
-        item.quantity = Math.max(1, parseInt(quantity))
+        item.quantity = Math.max(1, parseInt(quantity.toString()))
       }
     },
     checkout() {

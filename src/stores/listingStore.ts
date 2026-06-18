@@ -247,16 +247,16 @@ export const useListingStore = defineStore('listing', {
     }
   },
   actions: {
-    setSearchQuery(query) {
+    setSearchQuery(query: string) {
       this.searchQuery = query
     },
-    setSelectedCategory(category) {
+    setSelectedCategory(category: string) {
       this.selectedCategory = category
     },
-    setMaxPrice(price) {
+    setMaxPrice(price: number) {
       this.maxPrice = price
     },
-    setSortBy(sort) {
+    setSortBy(sort: string) {
       this.sortBy = sort
     }
   }

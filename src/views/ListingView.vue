@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useListingStore } from '../stores/listingStore'
@@ -9,7 +9,7 @@ const route = useRoute()
 
 const checkQueryParams = () => {
   if (route.query.category) {
-    listingStore.setSelectedCategory(route.query.category)
+    listingStore.setSelectedCategory(route.query.category as string)
   } else {
     listingStore.setSelectedCategory('All')
   }
@@ -41,9 +41,9 @@ watch(() => route.query.category, () => {
             id="search-input"
             type="text" 
             placeholder="Search keywords..." 
-            class="input-field w-full"
+            class="p-3 border border-brand-border bg-brand-surface text-sm transition-all duration-200 ease-in-out focus:outline-none focus:border-brand-dark w-full"
             :value="listingStore.searchQuery"
-            @input="listingStore.setSearchQuery($event.target.value)"
+            @input="listingStore.setSearchQuery(($event.target as HTMLInputElement).value)"
           />
         </div>
 
@@ -53,7 +53,7 @@ watch(() => route.query.category, () => {
             <button 
               v-for="cat in listingStore.categories" 
               :key="cat"
-              class="text-left bg-none border-none text-[14px] text-brand-muted cursor-pointer py-1.5 transition-fast border-l-2 border-transparent pl-2.5 hover:text-brand-dark hover:border-brand-border"
+              class="text-left bg-none border-none text-[14px] text-brand-muted cursor-pointer py-1.5 transition-all duration-200 ease-in-out border-l-2 border-transparent pl-2.5 hover:text-brand-dark hover:border-brand-border"
               :class="{ 'text-brand-dark font-medium border-l-brand-gold': listingStore.selectedCategory === cat }"
               @click="listingStore.setSelectedCategory(cat)"
             >
@@ -73,9 +73,9 @@ watch(() => route.query.category, () => {
             min="20" 
             max="400" 
             step="5"
-            class="price-slider w-full"
+            class="appearance-none h-[2px] bg-brand-border outline-none w-full [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-brand-dark [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:transition-all [&::-webkit-slider-thumb]:duration-200 [&::-webkit-slider-thumb]:hover:bg-brand-gold"
             :value="listingStore.maxPrice"
-            @input="listingStore.setMaxPrice(parseInt($event.target.value))"
+            @input="listingStore.setMaxPrice(parseInt(($event.target as HTMLInputElement).value))"
           />
           <div class="flex justify-between text-[11px] text-brand-gray">
             <span>$20</span>
@@ -87,9 +87,9 @@ watch(() => route.query.category, () => {
           <label for="sort-select" class="text-[11px] uppercase tracking-wider text-brand-muted font-semibold">Sort Products</label>
           <select 
             id="sort-select"
-            class="input-field select-field w-full cursor-pointer"
+            class="p-3 border border-brand-border bg-brand-surface text-sm transition-all duration-200 ease-in-out focus:outline-none focus:border-brand-dark select-field w-full cursor-pointer"
             :value="listingStore.sortBy"
-            @change="listingStore.setSortBy($event.target.value)"
+            @change="listingStore.setSortBy(($event.target as HTMLInputElement).value)"
           >
             <option value="default">Default Catalogue</option>
             <option value="price-asc">Price: Low to High</option>
@@ -108,7 +108,7 @@ watch(() => route.query.category, () => {
         <div v-if="listingStore.filteredProducts.length === 0" class="text-center py-20 px-6 border border-dashed border-brand-border bg-brand-surface flex flex-col items-center gap-4">
           <p class="font-serif text-xl text-brand-muted italic">No products found matching your current filters.</p>
           <button 
-            class="btn btn-secondary py-2 px-4 text-xs"
+            class="inline-flex items-center justify-center border text-sm tracking-widest uppercase cursor-pointer transition-all duration-400 ease-[cubic-bezier(0.25,1,0.5,1)] text-brand-dark border-brand-dark hover:bg-brand-dark hover:text-brand-bg py-2 px-4 text-xs"
             @click="listingStore.searchQuery = ''; listingStore.selectedCategory = 'All'; listingStore.maxPrice = 400"
           >
             Clear Filters
@@ -126,28 +126,3 @@ watch(() => route.query.category, () => {
     </div>
   </div>
 </template>
-
-<style scoped>
-.price-slider {
-  -webkit-appearance: none;
-  appearance: none;
-  height: 2px;
-  background: var(--color-brand-border);
-  outline: none;
-}
-
-.price-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--color-brand-dark);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.price-slider::-webkit-slider-thumb:hover {
-  background: var(--color-brand-gold);
-}
-</style>

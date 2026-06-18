@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useDetailsStore } from '../stores/detailsStore'
@@ -13,7 +13,7 @@ const openCart = () => {
 </script>
 
 <template>
-  <header class="sticky top-0 left-0 w-full bg-brand-bg/85 backdrop-blur-md border-b border-brand-border z-[900] transition-smooth">
+  <header class="sticky top-0 left-0 w-full bg-brand-bg/85 backdrop-blur-md border-b border-brand-border z-[900] transition-all duration-400 ease-[cubic-bezier(0.25,1,0.5,1)]">
     <div class="max-w-7xl w-full mx-auto px-6 h-20 flex items-center justify-between md:px-8">
       <nav class="flex gap-8 flex-1">
         <RouterLink 
@@ -38,7 +38,7 @@ const openCart = () => {
 
       <div class="flex items-center justify-end flex-1">
         <button 
-          class="bg-none border-none cursor-pointer p-2 relative text-brand-dark hover:text-brand-gold transition-fast flex items-center justify-center" 
+          class="bg-none border-none cursor-pointer p-2 relative text-brand-dark hover:text-brand-gold transition-all duration-200 ease-in-out flex items-center justify-center" 
           @click="openCart" 
           aria-label="Open shopping bag"
         >

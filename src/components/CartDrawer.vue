@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue'
 import { useDetailsStore } from '../stores/detailsStore'
 import { X, Plus, Minus, Trash2, ArrowRight } from '@lucide/vue'
@@ -14,11 +14,11 @@ const closeCart = () => {
   detailsStore.toggleCart(false)
 }
 
-const updateQty = (id, currentQty, amount) => {
+const updateQty = (id: string, currentQty: number, amount: number) => {
   detailsStore.updateQuantity(id, currentQty + amount)
 }
 
-const removeItem = (id) => {
+const removeItem = (id: string) => {
   detailsStore.removeFromCart(id)
 }
 
@@ -45,7 +45,7 @@ const resetStatus = () => {
     >
       <div class="p-6 border-b border-brand-border flex justify-between items-center">
         <h2 class="text-2xl font-serif">Shopping Bag</h2>
-        <button class="bg-none border-none cursor-pointer p-2 text-brand-dark hover:text-brand-gold transition-fast flex items-center justify-center" @click="closeCart" aria-label="Close bag">
+        <button class="bg-none border-none cursor-pointer p-2 text-brand-dark hover:text-brand-gold transition-all duration-200 ease-in-out flex items-center justify-center" @click="closeCart" aria-label="Close bag">
           <X :size="20" stroke-width="1.5" />
         </button>
       </div>
@@ -57,14 +57,14 @@ const resetStatus = () => {
           <p class="text-sm text-brand-muted mb-6 leading-relaxed">
             Thank you for shopping at Muse. Your order has been registered in our simulated storefront. Your curated selection is on its way.
           </p>
-          <button class="btn btn-primary" @click="resetStatus">
+          <button class="inline-flex items-center justify-center border text-sm tracking-widest uppercase cursor-pointer transition-all duration-400 ease-[cubic-bezier(0.25,1,0.5,1)] bg-brand-dark border-brand-dark text-brand-bg hover:bg-brand-gold hover:border-brand-gold py-3 px-7" @click="resetStatus">
             Continue Shopping
           </button>
         </div>
 
         <div v-else-if="cartItems.length === 0" class="flex flex-col items-center justify-center text-center h-[80%] px-4">
           <p class="font-serif text-xl text-brand-muted mb-6 italic">Your shopping bag is currently empty.</p>
-          <button class="btn btn-secondary" @click="closeCart">
+          <button class="inline-flex items-center justify-center border text-sm tracking-widest uppercase cursor-pointer transition-all duration-400 ease-[cubic-bezier(0.25,1,0.5,1)] text-brand-dark border-brand-dark hover:bg-brand-dark hover:text-brand-bg py-3 px-7" @click="closeCart">
             Discover Products
           </button>
         </div>
@@ -78,7 +78,7 @@ const resetStatus = () => {
             <div class="flex-grow flex flex-col">
               <div class="flex justify-between items-center mb-1">
                 <span class="text-[11px] uppercase tracking-wider text-brand-gray">{{ item.product.category }}</span>
-                <button class="bg-none border-none text-brand-gray hover:text-red-600 cursor-pointer p-1 flex items-center justify-center transition-fast" @click="removeItem(item.id)" aria-label="Remove item">
+                <button class="bg-none border-none text-brand-gray hover:text-red-600 cursor-pointer p-1 flex items-center justify-center transition-all duration-200 ease-in-out" @click="removeItem(item.id)" aria-label="Remove item">
                   <Trash2 :size="14" stroke-width="1.5" />
                 </button>
               </div>
@@ -92,7 +92,7 @@ const resetStatus = () => {
               <div class="flex justify-between items-center mt-auto">
                 <div class="flex items-center border border-brand-border bg-brand-bg">
                   <button 
-                    class="bg-none border-none cursor-pointer w-7 h-7 flex items-center justify-center text-brand-muted hover:text-brand-dark hover:bg-brand-border/40 disabled:opacity-30 disabled:cursor-not-allowed transition-fast" 
+                    class="bg-none border-none cursor-pointer w-7 h-7 flex items-center justify-center text-brand-muted hover:text-brand-dark hover:bg-brand-border/40 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-200 ease-in-out" 
                     @click="updateQty(item.id, item.quantity, -1)"
                     :disabled="item.quantity <= 1"
                   >
@@ -100,7 +100,7 @@ const resetStatus = () => {
                   </button>
                   <span class="text-[13px] w-6 text-center">{{ item.quantity }}</span>
                   <button 
-                    class="bg-none border-none cursor-pointer w-7 h-7 flex items-center justify-center text-brand-muted hover:text-brand-dark hover:bg-brand-border/40 transition-fast" 
+                    class="bg-none border-none cursor-pointer w-7 h-7 flex items-center justify-center text-brand-muted hover:text-brand-dark hover:bg-brand-border/40 transition-all duration-200 ease-in-out" 
                     @click="updateQty(item.id, item.quantity, 1)"
                   >
                     <Plus :size="12" stroke-width="1.5" />
@@ -121,7 +121,7 @@ const resetStatus = () => {
         </div>
         <p class="text-xs text-brand-muted mb-5">Shipping and taxes calculated at checkout.</p>
         
-        <button class="w-full flex justify-center items-center gap-3 py-3 text-sm tracking-widest uppercase font-semibold border bg-brand-dark border-brand-dark text-brand-bg hover:bg-brand-gold hover:border-brand-gold transition-smooth group" @click="checkout">
+        <button class="w-full flex justify-center items-center gap-3 py-3 text-sm tracking-widest uppercase font-semibold border bg-brand-dark border-brand-dark text-brand-bg hover:bg-brand-gold hover:border-brand-gold transition-all duration-400 ease-[cubic-bezier(0.25,1,0.5,1)] group" @click="checkout">
           <span>Checkout</span>
           <ArrowRight :size="16" stroke-width="1.5" class="transition-transform duration-200 group-hover:translate-x-1" />
         </button>
