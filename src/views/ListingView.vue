@@ -16,7 +16,7 @@ const checkQueryParams = () => {
 };
 
 onMounted(() => {
-  checkQueryParams();
+  checkQueryParams;
 });
 
 watch(

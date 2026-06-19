@@ -30,3 +30,11 @@ export interface ListingState {
   maxPrice: number;
   sortBy: string;
 }
+
+export interface DetailsState {
+  activeProduct: Product | null;
+  selectedVariant: string;
+  cart: CartItem[];
+  cartOpen: boolean;
+  checkoutSuccess: boolean;
+}

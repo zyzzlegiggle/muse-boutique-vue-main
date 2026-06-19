@@ -1,14 +1,14 @@
 import { defineStore } from 'pinia';
 import { useListingStore } from './listingStore';
-import { CartItem, Product } from '@/types';
+import { CartItem, DetailsState, Product } from '@/types';
 
 export const useDetailsStore = defineStore('details', {
-  state: () => ({
-    activeProduct: null as Product | null,
-    selectedVariant: '' as string,
-    cart: [] as CartItem[],
-    cartOpen: false as boolean,
-    checkoutSuccess: false as boolean,
+  state: (): DetailsState => ({
+    activeProduct: null,
+    selectedVariant: '',
+    cart: [],
+    cartOpen: false,
+    checkoutSuccess: false,
   }),
   getters: {
     cartSubtotal(state): number {
@@ -24,9 +24,7 @@ export const useDetailsStore = defineStore('details', {
   actions: {
     loadProduct(id: number) {
       const listingStore = useListingStore();
-      const product = listingStore.products.find(
-        (p) => p.id === parseInt(id.toString()),
-      );
+      const product = listingStore.products.find((p) => p.id === id);
       if (product) {
         this.activeProduct = product;
         this.selectedVariant = product.variants[0] || '';

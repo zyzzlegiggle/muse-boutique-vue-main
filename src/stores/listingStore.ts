@@ -8,7 +8,7 @@ import incenseburnerImg from '../assets/incenseburner.png';
 import perfumeImg from '../assets/perfume.png';
 import santoriniImg from '../assets/santorini.png';
 import vetivercandleImg from '../assets/vetivercandle.png';
-import { ListingState } from '@/types';
+import { ListingState, Product } from '@/types';
 
 export const useListingStore = defineStore('listing', {
   state: (): ListingState => ({
@@ -245,7 +245,7 @@ export const useListingStore = defineStore('listing', {
     sortBy: 'default',
   }),
   getters: {
-    filteredProducts(state) {
+    filteredProducts(state): Product[] {
       return state.products
         .filter((product) => {
           const matchesSearch =
@@ -270,7 +270,7 @@ export const useListingStore = defineStore('listing', {
           return 0;
         });
     },
-    categories(state) {
+    categories(state): string[] {
       return ['All', ...new Set(state.products.map((p) => p.category))];
     },
   },
