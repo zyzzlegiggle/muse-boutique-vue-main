@@ -22,3 +22,11 @@ export interface CartItem {
     variant: string
     quantity: number
 }
+
+export interface ListingState {
+    products: Product[]
+    searchQuery: string
+    selectedCategory: string
+    maxPrice: number
+    sortBy: string
+}

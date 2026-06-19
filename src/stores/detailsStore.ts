@@ -13,15 +13,15 @@ export const useDetailsStore = defineStore('details', {
     checkoutSuccess: false as boolean
   }),
   getters: {
-    cartSubtotal(state) {
+    cartSubtotal(state): number {
       return state.cart.reduce((total, item) => total + (item.product.price * item.quantity), 0)
     },
-    cartItemsCount(state) {
+    cartItemsCount(state): number {
       return state.cart.reduce((count, item) => count + item.quantity, 0)
     }
   },
   actions: {
-    loadProduct(id: number | string) {
+    loadProduct(id: number) {
       const listingStore = useListingStore()
       const product = listingStore.products.find(p => p.id === parseInt(id.toString()))
       if (product) {

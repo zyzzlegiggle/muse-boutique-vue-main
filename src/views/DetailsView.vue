@@ -11,7 +11,10 @@ const product = computed(() => detailsStore.activeProduct)
 const selectedVariant = computed(() => detailsStore.selectedVariant)
 
 const loadActiveProduct = () => {
-  detailsStore.loadProduct(route.params.id as string)
+  const id = Number(Array.isArray(route.params.id) ? route.params.id[0] : route.params.id)
+  if (!isNaN(id)) {
+    detailsStore.loadProduct(id)
+  }
 }
 
 

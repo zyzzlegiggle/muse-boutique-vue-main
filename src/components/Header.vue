@@ -31,7 +31,7 @@ const openCart = () => {
           Shop
         </RouterLink>
       </nav>
-
+0
       <RouterLink to="/" class="font-serif text-2xl md:text-3xl tracking-[0.25em] text-brand-dark text-center flex-1 flex justify-center md:-mr-10">
         MUSE
       </RouterLink>

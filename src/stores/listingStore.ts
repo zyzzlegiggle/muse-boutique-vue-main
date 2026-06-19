@@ -8,9 +8,10 @@ import incenseburnerImg from '../assets/incenseburner.png'
 import perfumeImg from '../assets/perfume.png'
 import santoriniImg from '../assets/santorini.png'
 import vetivercandleImg from '../assets/vetivercandle.png'
+import { ListingState } from '@/types'
 
 export const useListingStore = defineStore('listing', {
-  state: () => ({
+  state: (): ListingState => ({
     products: [
       {
         id: 1,
