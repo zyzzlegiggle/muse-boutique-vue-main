@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
 
 @theme {
@@ -19,8 +19,14 @@
   --animate-fade-in: fadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 
@@ -33,7 +39,12 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-serif);
     font-weight: 400;
     letter-spacing: -0.02em;
