@@ -2,7 +2,9 @@
 import { computed } from 'vue';
 import { useDetailsStore } from '../stores/detailsStore';
 import { X, Plus, Minus, Trash2, ArrowRight } from '@lucide/vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const detailsStore = useDetailsStore();
 
 const isOpen = computed(() => detailsStore.cartOpen);
@@ -23,7 +25,8 @@ const removeItem = (id: string) => {
 };
 
 const checkout = () => {
-  detailsStore.checkout();
+  closeCart();
+  router.push('/checkout');
 };
 
 const resetStatus = () => {

@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import ListingView from '../views/ListingView.vue';
 import DetailsView from '../views/DetailsView.vue';
+import CheckoutView from '../views/CheckoutView.vue';
 
 declare module 'vue-router' {
   interface RouteMeta {
@@ -27,6 +28,12 @@ const routes: RouteRecordRaw[] = [
     name: 'ProductDetails',
     component: DetailsView,
     meta: { title: 'Product Details | Muse Boutique' },
+  },
+  {
+    path: '/checkout',
+    name: 'Checkout',
+    component: CheckoutView,
+    meta: { title: 'Checkout | Muse Boutique' },
   },
   {
     path: '/:pathMatch(.*)*',
