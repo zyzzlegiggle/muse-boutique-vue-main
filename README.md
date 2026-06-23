@@ -1,5 +1,50 @@
-# Vue 3 + Vite
+# Muse Boutique
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+A modern e-commerce storefront web application built using Vue 3, Vite, and Tailwind CSS.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## Features
+
+- **Product Listing & Filtering**: Browse products with category filtering, search, and sorting.
+- **Product Details**: Detailed view of each product with dynamic recommendations.
+- **Shopping Cart**: Slide-out cart drawer with item management (add, update quantity, remove).
+- **State Management**: Reactive global state powered by Pinia.
+- **Responsive Design**: Mobile-friendly layout using Tailwind CSS.
+
+## Tech Stack
+
+- **Framework**: Vue 3 (Composition API, `<script setup>`)
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **State Management**: Pinia
+- **Routing**: Vue Router
+- **Icons**: Lucide Vue
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18+)
+- npm / yarn / pnpm
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd muse-boutique-vue-main
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Build for production:
+   ```bash
+   npm run build
+   ```
