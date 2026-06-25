@@ -74,10 +74,10 @@ export const useDetailsStore = defineStore('details', {
         this.cart.splice(index, 1);
       }
     },
-    updateQuantity(cartItemId: string, quantity: number | string) {
+    updateQuantity(cartItemId: string, quantity: number) {
       const item = this.cart.find((item) => item.id === cartItemId);
       if (item) {
-        item.quantity = Math.max(1, parseInt(quantity.toString()));
+        item.quantity = Math.max(1, Math.floor(quantity));
       }
     },
     checkout() {
